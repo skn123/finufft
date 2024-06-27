@@ -63,7 +63,8 @@ def _get_NufftOpts():
         ('gpu_spreadinterponly', c_int),
         ('gpu_maxbatchsize', c_int),
         ('gpu_device_id', c_int),
-        ('gpu_stream', c_void_p)
+        ('gpu_stream', c_void_p),
+        ('modeord', c_int)
     ]
     return fields
 
@@ -101,13 +102,13 @@ _make_planf.restypes = c_int
 
 _set_pts = lib.cufinufft_setpts
 _set_pts.argtypes = [
-    c_void_p, c_int, c_void_p, c_void_p, c_void_p, ctypes.c_int, c_double_p,
+    c_void_p, c_int64, c_void_p, c_void_p, c_void_p, ctypes.c_int, c_double_p,
     c_double_p, c_double_p]
 _set_pts.restype = c_int
 
 _set_ptsf = lib.cufinufftf_setpts
 _set_ptsf.argtypes = [
-    c_void_p, c_int, c_void_p, c_void_p, c_void_p, ctypes.c_int, c_float_p,
+    c_void_p, c_int64, c_void_p, c_void_p, c_void_p, ctypes.c_int, c_float_p,
     c_float_p, c_float_p]
 _set_ptsf.restype = c_int
 
